@@ -8,10 +8,9 @@ class Node:
         self.next = None
 
 
-class WolfGoatCabbage:
+class WolfGoatCabbage(s.Problem):
     def __init__(self, initial, goal=({},{'F', 'W', 'G', 'C'})):
-        self.initial = initial
-        self.goal = goal
+        super().__init__(initial, goal)
     
     def get_left(self, state):
         return state.index(0)
@@ -26,6 +25,9 @@ class WolfGoatCabbage:
     def goal_test(self, state):
         return state == self.goal
     
+    def result(self, state, action):
+        return state
+    
         
         
         
@@ -33,7 +35,7 @@ class WolfGoatCabbage:
     
 
 if __name__ == '__main__':
-    wgc = WolfGoatCabbage([{'F', 'W', 'G', 'C'}])
+    wgc = WolfGoatCabbage({},{'F', 'W', 'G', 'C'})
     solution = s.depth_first_graph_search(wgc).solution()
     print(solution)
     solution = s.breadth_first_graph_search(wgc).solution()
